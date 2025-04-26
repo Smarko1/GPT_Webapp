@@ -9,7 +9,7 @@ npm install express cors dotenv openai
 npm install concurrently --save-dev
 
 
-### Indítás a root mappában történik ezzel a paranccsal:
+## Indítás a root mappában történik ezzel a paranccsal:
 npm start
 
-## .env fájl a backend mappában kell
+## .env fájl a backend mappában kell amibe az API key-t másolod
