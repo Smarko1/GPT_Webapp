@@ -11,3 +11,5 @@ npm install concurrently --save-dev
 
 ### Indítás a root mappában történik ezzel a paranccsal:
 npm start
+
+## .env fájl a backend mappában kell
