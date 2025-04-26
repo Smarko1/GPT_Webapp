@@ -2,8 +2,8 @@
 npm install express cors dotenv openai
 
 ## frontend mappa:
-npm install <- ez külön kell
-npm install axios
+1. npm install <- ez külön kell
+2. npm install axios
 
 ## root mappában:
 npm install concurrently --save-dev
