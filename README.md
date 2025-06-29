@@ -1,6 +1,6 @@
 ## Backend mappa
 npm install express cors dotenv openai\
-.env fájlt a backend mappába rakod és ide másolod az API key-t
+.env fájlt a backend mappában készítesz és ide másolod az API key-t
 
 ## Frontend mappa
 npm install
