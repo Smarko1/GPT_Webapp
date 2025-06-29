@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const axios = require('axios');
 const OpenAI = require('openai');
 
 const app = express();
@@ -13,24 +14,53 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+// NewsAPI lekérdezés
+async function fetchNews(topic) {
+  const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(
+    topic
+  )}&sortBy=publishedAt&language=hu&pageSize=5&apiKey=${process.env.NEWS_API_KEY}`;
+
+  const response = await axios.get(url);
+  return response.data.articles;
+}
+
 app.post('/', async (req, res) => {
   const { topic } = req.body;
 
   try {
-    const response = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
-      messages: [
-        { role: 'system', content: `
-          Kérlek keress rövid 5 cikket a megadott témában.
-          Mindegyik cikk tartalmazza és pontosan így nézzen ki:
-          - Egy rövid címet (1 sor és tartalmazza hogy hanyadik cím: pl. 1. Cím)
-          - Egy 4-5 mondatos összefoglalót (külön bekezdésben)
-          - Egy valódi, létező híroldal pontos (pl. CNN,) linkjét, amely pontosan leírja a cikket amit te megadtál.
-          (pl. URL: https://www.example.com ezt is egy külön bekezdésben)
+    const articles = await fetchNews(topic);
 
-          FONTOS: Az URL-ek valósághű, létező híroldalak cikkeire mutassanak, ne kitalált címek legyenek.
-        ` },
-        { role: 'user', content: topic },
+    if (!articles.length) {
+      return res.status(404).send('Nem található ilyen hír');
+    }
+
+    const formattedArticles = articles
+      .map(
+        (article, index) => `
+${index + 1}. ${article.title}
+
+${article.description || article.content || 'Nincs leírás hozzá'}
+
+URL: ${article.url}
+        `
+      )
+      .join('\n\n');
+
+    const response = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
+      messages: [
+        {
+          role: 'system',
+          content: `
+Ezek a hírek a következő témában: "${topic}".
+Kérlek foglald össze mind az 5 cikket ilyen módon:
+- Sorszám
+- Cím
+- Egy 4-5 mondatos összefoglaló
+- Az URL pontosan így: URL: https://...
+          `,
+        },
+        { role: 'user', content: formattedArticles },
       ],
       temperature: 0.7,
     });
@@ -43,5 +73,5 @@ app.post('/', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Backend fut`);
+  console.log(`Backend fut a ${port} porton`);
 });
