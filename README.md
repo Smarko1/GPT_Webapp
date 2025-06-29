@@ -5,10 +5,10 @@ npm install express cors dotenv openai
 ## Frontend mappa
 npm install
 
-## Root mappában:
+## Root mappa
 npm install concurrently --save-dev
 
-## Indítás a root mappában történik ezzel a paranccsal:
+## Root mappában indítás
 npm start
 
 
