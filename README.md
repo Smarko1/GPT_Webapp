@@ -1,6 +1,6 @@
 ## Backend mappa
 npm install axios express cors dotenv openai\
-.env fájlt a backend mappában készítesz és ide másolod az API key-t
+.env fájlt a backend mappában készítesz és ide másolod az OpenAI API keyt és a News API keyt.
 
 ## Frontend mappa
 npm install
@@ -10,5 +10,4 @@ npm install concurrently --save-dev
 
 ## Root mappában indítás
 npm start
-
 
