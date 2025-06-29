@@ -1,5 +1,5 @@
 ## Backend mappa
-npm install express cors dotenv openai\
+npm install axios express cors dotenv openai\
 .env fájlt a backend mappában készítesz és ide másolod az API key-t
 
 ## Frontend mappa
