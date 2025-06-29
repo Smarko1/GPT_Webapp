@@ -1,4 +1,6 @@
 # CHATGPT NEWS
+## A programról
+Ez a program lehetővé teszi, hogy a felhasználók bármilyen témában friss híreket keressenek. A NewsAPI-n keresztül érjük el a híreket és az OpenAI GPT modelljét használjuk arra hogy összegezze ezeket a híreket. 
 ## Függőségek telepítése
 ### Backend mappa
 npm install axios express cors dotenv openai\
@@ -14,4 +16,5 @@ npm install concurrently --save-dev
 
 ### Root mappában indítás
 npm start
+
 
