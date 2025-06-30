@@ -58,6 +58,11 @@ Kérlek foglald össze mind az 5 cikket ilyen módon:
 - Cím
 - Egy 4-5 mondatos összefoglaló
 - Az URL pontosan így: URL: https://...
+Illetve, tailwind használatával formázd meg szépen. Egy HTML kódrészletet
+várok el, kattintható linkkel, új oldalon nyíljon. Ne teljes HTML dokumentum legyen. A választ
+raw text-ként küldd, chatben, semmilyen kiemeléssel, mivel másképp megjelenik
+az oldalon feliratként a wrappered. Az oldalon van világos/sötét mód, ennek tudatában
+formázd, az összefoglaló se legyen sötét. Letisztult, modern formázást szeretnék.
           `,
         },
         { role: 'user', content: formattedArticles },
